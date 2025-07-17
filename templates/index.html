@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Poverty Solution</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 30px; background: #eef2f3; }
+        input, select { padding: 10px; margin: 10px; width: 300px; }
+        .result { margin-top: 30px; background: #fff; padding: 20px; border-radius: 10px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h2>AI Job & Service Recommender</h2>
+    <form method="post" action="/result">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <input type="text" name="skill" placeholder="Describe your skills (e.g., tailoring, typing)" required><br>
+        <select name="location" required>
+            <option disabled selected>Select Location</option>
+            <option>Delhi</option>
+            <option>Mumbai</option>
+            <option>Rural</option>
+        </select><br>
+        <input type="submit" value="Get Recommendations">
+    </form>
+
+    {% if predicted_job %}
+    <div class="result">
+        <h3>Hello {{ name }}!</h3>
+        <p><strong>Recommended Job:</strong> {{ predicted_job }}</p>
+
+        <h4>Nearby Services:</h4>
+        <ul>
+        {% for service in services %}
+            <li>{{ service }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</body>
+</html>
